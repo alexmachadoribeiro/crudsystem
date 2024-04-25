@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.botoes {
+	display: flex;
+}
+
+.botoes div {
+	margin: 15px 10px;
+}
+
+nav {
+	box-shadow: 0px 10px 10px #777;
+	margin-bottom: 50px;
+}

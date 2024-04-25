@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="author" content="Alex Machado" />
+		<meta name="robots" content="index, follow" />
+		<meta name="keywords" content="SENAI, CRUD, Java, desenvolvedor, desenvolvimento, dev, developer, developers, noturno, inovaTech, Spring, framework, initializr, boot, mvc, alex, machado, ribeiro, professor, instrutor, programação, programador, front-end, back-end, bootstrap, model, view, controller, sql, mysql, cadastrar, alterar, excluir, consultar, index, usuário" />
+		<meta name="description" content="Sistema CRUD Java criado no curso de Desenvolvedor Java Noturno. A página index irá listar os dados de todos os usuários cadastrados." />
+		
+		<!-- Mobile First -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<!-- Favicon -->
+		<link href="imagens/x-logo.png" rel="shortcut icon" type="images/png" />
+		
+		<!-- CSS Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		
+		<!-- CSS Externo -->
+		<link href="css/estilos.css" rel="stylesheet" type="text/css" media="all" />
+		
+		<!-- CSS Interno -->
+		<style>
+			
+			p {
+				margin: 0px;
+			}
+			
+			.row {
+				margin: 50px 0px;
+				padding: 20px;
+				width: 75%;
+				box-shadow: 10px 10px 15px #aaa;
+				background-color: #eee;
+				border-radius: 5px;
+			}
+			
+		</style>
+		
+		<title>CRUD System</title>
+	</head>
+	<body>
+		<!-- Navbar -->
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			  <div class="container-fluid">
+			    <a class="navbar-brand" href="#">
+			      <img src="imagens/x-logo.png" alt="Logo" width="30" height="24">
+			    </a>
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			        <li class="nav-item">
+			          <a class="nav-link active" aria-current="page" href="#">Home</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" href="/cadastrarUsuario">Cadastrar</a>
+			        </li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+		</header>
+		
+		<main>
+			<div class="container">
+				<h1>CRUD SYSTEM</h1>
+				<hr />
+				<!-- Mostrando usuários cadastrados no sistema -->
+				<div th:each="usuario : ${usuarios}">
+					<div class="row">
+						<h3><span th:text="${usuario.primeiroNome}"></span> <span th:text="${usuario.sobrenome}"></span></h3>
+						<hr />
+						<p><strong>ID: </strong><span th:text="${usuario.idUsuario}"></span>.</p>
+						<p><strong>CPF: </strong><span th:text="${usuario.cpf}"></span>.</p>
+						<p><strong>E-mail: </strong><span th:text="${usuario.email}"></span>.</p>
+						<p><strong>Gênero: </strong><span th:text="${usuario.genero}"></span>.</p>
+						<p><strong>Profissão: </strong><span th:text="${usuario.profissao}"></span>.</p>
+						<div class="botoes">
+							<div>
+								<a class="btn btn-primary" th:href="${(#mvc.url('CC#alterarUsuario').arg(0, usuario.idUsuario)).build()}" role="button">Alterar</a>
+							</div>
+							<div>
+								<a class="btn btn-danger"  th:href="${(#mvc.url('CC#confirmarExclusaoUsuario').arg(0, usuario.idUsuario)).build()}" role="button" >Excluir</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- JS -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	</body>
+</html>
